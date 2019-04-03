@@ -3,8 +3,10 @@ import {Link, NavLink} from "react-router-dom";
 import {Container, Navbar, Nav} from "react-bootstrap";
 
 const NavBar = () => {
+
+
   return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" expand="lg">
           <Container>
             <Link className="navbar-brand" to="/">Portfolio</Link>
             <Nav className="mr-auto">

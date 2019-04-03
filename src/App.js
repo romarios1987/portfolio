@@ -14,7 +14,7 @@ import NotFound from "./components/pages/NotFound";
 class App extends Component {
   render() {
     return (
-          <React.Fragment>
+          <div className="wrap-app">
             <NavBar/>
             <Switch>
               <Route path="/" exact component={Home}/>
@@ -26,7 +26,7 @@ class App extends Component {
               <Route path="/not-found" component={NotFound}/>
               <Redirect to="/not-found"/>
             </Switch>
-          </React.Fragment>
+          </div>
     );
   }
 }

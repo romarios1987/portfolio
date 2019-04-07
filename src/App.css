@@ -28,6 +28,10 @@
   z-index: -1;
 }
 
+.second-title{
+  font-family: 'Abril Fatface', cursive;
+}
+
 .home-page h1{
   font-family: 'Abril Fatface', cursive;
   font-size: 4.5rem;

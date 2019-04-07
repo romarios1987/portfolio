@@ -20,7 +20,7 @@ class Home extends Component {
 
             <header className="App-header">
               <Zoom>
-                <h3 className="text-center">Hi my name is Roman. I'm...</h3>
+                <h3 className="text-center">Hi! My name is Roman. I'm...</h3>
               </Zoom>
 
 

@@ -1,53 +1,63 @@
 import React, {Component} from 'react';
 import Link from "next/link";
-import {Link as NextLink} from '../../routes'
-import '../../styles/main.scss'
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+} from 'reactstrap';
 
 
-class Header extends Component {
+const BsNavLink = (props) => {
+    const {route, title} = props;
+    return (
+        <Link href={route}><a className="nav-link port-navbar-link">{title}</a></Link>
+    )
+};
+
+
+export default class Header extends Component {
+
+    state = {isOpen: false};
+
+    toggle = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    };
+
     render() {
 
-        // debugger;
-        const title = this.props.title;
+        const {isOpen} = this.state;
 
         return (
-            <React.Fragment>
-                {
-                    this.props.children
-                }
-                <p className="customClass">{title}</p>
-                <p className="customClassFromFile">{title}</p>
-                <Link href="/">
-                    <a>Home</a>
-                </Link>
-                <Link href="/about">
-                    <a>About</a>
-                </Link>
-                <Link href="/blog">
-                    <a>Blog</a>
-                </Link>
-                <Link href="/portfolios">
-                    <a>Portfolio</a>
-                </Link>
-                <Link href="/cv">
-                    <a>cv</a>
-                </Link>
-
-                <NextLink route='test'  params={{id: '2'}}><a>Test 2</a></NextLink>
-                <NextLink route='/test/3'><a>Test 3</a></NextLink>
-
-                <style jsx>
-                    {
-                        `
-                            a{font-size: 40px};
-                            .customClass{color: red}
-                        `
-                    }
-                </style>
-
-            </React.Fragment>
+            <div>
+                <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+                    <NavbarBrand href="/" className="port-navbar-brand">Roman Batiuk</NavbarBrand>
+                    <NavbarToggler onClick={this.toggle}/>
+                    <Collapse isOpen={isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem className="port-navbar-item">
+                                <BsNavLink route="/" title="Home"/>
+                            </NavItem>
+                            <NavItem className="port-navbar-item">
+                                <BsNavLink route="/about" title="About"/>
+                            </NavItem>
+                            <NavItem className="port-navbar-item">
+                                <BsNavLink route="/portfolios" title="Portfolios"/>
+                            </NavItem>
+                            <NavItem className="port-navbar-item">
+                                <BsNavLink route="/blog" title="Blog"/>
+                            </NavItem>
+                            <NavItem className="port-navbar-item">
+                                <BsNavLink route="/cv" title="CV"/>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </Navbar>
+            </div>
         );
     }
 }
-
-export default Header;

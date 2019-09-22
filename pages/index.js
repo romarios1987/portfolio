@@ -1,67 +1,77 @@
 import React, {Component} from 'react';
 import BaseLayout from "../components/layouts/BaseLayout";
-import {rewriteUrlForNextExport} from "next/dist/next-server/lib/router/rewrite-url-for-export";
-import axios from 'axios';
-import SuperComponent from "../components/SuperComponent";
 
-class Index extends SuperComponent {
+import {Container, Row, Col} from 'reactstrap';
 
-    static async getInitialProps({req}) {
-        let postsData = {};
+import Typed from 'react-typed';
 
-        try {
-            const response = await axios.get('https://jsonplaceholder.typicode.com/posts/3');
-            postsData = response.data;
+class Index extends Component {
 
-        } catch (error) {
-            console.error(error);
-        }
-
-        return {initialData: [1, 23, 4, 5], postsData};
-    }
-
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            title: 'Index Page'
-        };
-
-        console.log('constructor');
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount')
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('componentDidUpdate')
-    }
-
-    componentWillUnmount() {
-        console.log('componentWillUnmount')
-    }
-
-    updateTitle = () => {
-
-        this.setState({title: 'About Page'})
+    state = {
+        roles: ['Developer', 'Tech Lover', 'Team Player', 'Course Creator', 'React.js']
     };
 
-
     render() {
-        const {title} = this.state;
-        const {initialData, postsData} = this.props;
-        // console.log('Render');
-        // console.log(initialData);
-        // console.log(postsData);
         return (
-            <BaseLayout>
-                <h3>Hello, this is Home Page</h3>
-                <h2>{postsData.title}</h2>
-                <button onClick={this.updateTitle}>Change</button>
-            </BaseLayout>
+            <BaseLayout className="cover">
+                <div className="main-section">
+                    <div className="background-image">
+                        <img src="/static/images/background-index.png" alt={''}/>
+                    </div>
 
+                    <Container>
+                        <Row>
+                            <Col md="6">
+                                <div className="hero-section">
+                                    <div className={`flipper`}>
+                                        <div className="back">
+                                            <div className="hero-section-content">
+                                                <h2> Full Stack Web Developer </h2>
+                                                <div className="hero-section-content-intro">
+                                                    Have a look at my portfolio and job history.
+                                                </div>
+                                            </div>
+                                            <img className="image" src="/static/images/section-1.png" alt={''}/>
+                                            <div className="shadow-custom">
+                                                <div className="shadow-inner">{}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col md="6" className="hero-welcome-wrapper">
+                                <div className="hero-welcome-text">
+                                    <h1>
+                                        Welcome to the portfolio website of Roman Batiuk.
+                                        Get informed, collaborate and discover projects I was working on through the
+                                        years!
+                                    </h1>
+                                </div>
+
+
+                                <Typed
+                                    loop
+                                    typeSpeed={70}
+                                    backSpeed={70}
+                                    strings={this.state.roles}
+                                    backDelay={1000}
+                                    loopCount={0}
+                                    showCursor
+                                    className="self-typed"
+                                    cursorChar="|"
+                                />
+
+
+                                <div className="hero-welcome-bio">
+                                    <h1>
+                                        Let's take a look on my work.
+                                    </h1>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            </BaseLayout>
         );
     }
 }

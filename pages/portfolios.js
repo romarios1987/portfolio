@@ -3,10 +3,11 @@ import BaseLayout from "../components/layouts/BaseLayout";
 import Link from "next/link";
 
 import axios from "axios";
+import BasePage from "../components/BasePage";
 
 class Portfolios extends Component {
 
-    static async getInitialProps({req}) {
+    static async getInitialProps() {
         let posts = [];
 
         try {
@@ -34,16 +35,12 @@ class Portfolios extends Component {
 
 
     render() {
-        const {posts} = this.props;
+        // const {posts} = this.props;
         return (
             <BaseLayout>
-                <h2>All Portfolio</h2>
-
-                <ul>
-                    {this.renderPosts(posts)}
-                </ul>
-
-
+                <BasePage>
+                    <h2>Portfolio page</h2>
+                </BasePage>
             </BaseLayout>
         );
     }

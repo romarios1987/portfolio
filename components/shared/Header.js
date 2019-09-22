@@ -17,6 +17,19 @@ const BsNavLink = (props) => {
     )
 };
 
+const Login = () => {
+    return (
+        <span className="nav-link port-navbar-link clickable">Login</span>
+    )
+};
+
+
+const Logout = () => {
+    return (
+        <span className="nav-link port-navbar-link clickable">Logout</span>
+    )
+};
+
 
 export default class Header extends Component {
 
@@ -54,6 +67,16 @@ export default class Header extends Component {
                             <NavItem className="port-navbar-item">
                                 <BsNavLink route="/cv" title="CV"/>
                             </NavItem>
+
+
+                            <NavItem className="port-navbar-item">
+                                <Login/>
+                            </NavItem>
+                            <NavItem className="port-navbar-item">
+                                <Logout/>
+                            </NavItem>
+
+
                         </Nav>
                     </Collapse>
                 </Navbar>

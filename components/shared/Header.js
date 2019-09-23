@@ -49,7 +49,7 @@ export default class Header extends Component {
 
         const {isOpen} = this.state;
 
-        const {isAuthenticated} = this.props;
+        const {isAuthenticated, user} = this.props;
 
         return (
             <div>
@@ -84,6 +84,12 @@ export default class Header extends Component {
                             {isAuthenticated &&
                             <NavItem className="port-navbar-item">
                                 <Logout/>
+                            </NavItem>
+                            }
+
+                            {isAuthenticated &&
+                            <NavItem className="port-navbar-item">
+                               <span className="nav-link port-navbar-link">{user.name}</span>
                             </NavItem>
                             }
 

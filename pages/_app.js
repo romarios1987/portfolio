@@ -12,19 +12,11 @@ class MyApp extends App {
 
     static async getInitialProps(appContext) {
 
-        const isAuthenticated = process.browser ? auth0Client.clientAuth() : auth0Client.serverAuth(appContext.ctx.req);
-        // console.log(isAuthenticated);
+        const user = process.browser ? await auth0Client.clientAuth() : await auth0Client.serverAuth(appContext.ctx.req);
 
-        // let isAuthenticated;
-        // if (process.browser) {
-        //     isAuthenticated = "clientAuth();"
-        // } else {
-        //     isAuthenticated = "serverAuth();"
-        // }
+        const auth = {user, isAuthenticated: !!user};
 
-        const auth = {isAuthenticated};
 
-        // calls page's `getInitialProps` and fills `appProps.pageProps`
         const appProps = await App.getInitialProps(appContext);
 
         return {...appProps, auth}
@@ -34,7 +26,7 @@ class MyApp extends App {
         const {Component, pageProps, auth} = this.props;
 
         console.log(auth);
-        return <Component {...pageProps} auth={auth} />
+        return <Component {...pageProps} auth={auth}/>
     }
 }
 

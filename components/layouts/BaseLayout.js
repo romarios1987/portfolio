@@ -8,7 +8,7 @@ const BaseLayout = (props) => {
 
     return (
         <div className="layout-container">
-            <Header/>
+            <Header isAuthenticated={props.isAuthenticated}/>
             <main className={`cover ${props.className}`}>
                 <div className="wrapper">
                     {props.children}

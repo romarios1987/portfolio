@@ -10,6 +10,9 @@ import {
 } from 'reactstrap';
 
 
+import auth0Client from "../../services/auth0";
+
+
 const BsNavLink = (props) => {
     const {route, title} = props;
     return (
@@ -19,14 +22,14 @@ const BsNavLink = (props) => {
 
 const Login = () => {
     return (
-        <span className="nav-link port-navbar-link clickable">Login</span>
+        <span onClick={auth0Client.login} className="nav-link port-navbar-link clickable">Login</span>
     )
 };
 
 
 const Logout = () => {
     return (
-        <span className="nav-link port-navbar-link clickable">Logout</span>
+        <span onClick={auth0Client.logout} className="nav-link port-navbar-link clickable">Logout</span>
     )
 };
 
@@ -41,9 +44,12 @@ export default class Header extends Component {
         });
     };
 
+
     render() {
 
         const {isOpen} = this.state;
+
+        const {isAuthenticated} = this.props;
 
         return (
             <div>
@@ -69,13 +75,17 @@ export default class Header extends Component {
                             </NavItem>
 
 
+                            {!isAuthenticated &&
                             <NavItem className="port-navbar-item">
                                 <Login/>
                             </NavItem>
+                            }
+
+                            {isAuthenticated &&
                             <NavItem className="port-navbar-item">
                                 <Logout/>
                             </NavItem>
-
+                            }
 
                         </Nav>
                     </Collapse>

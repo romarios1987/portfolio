@@ -31,7 +31,7 @@ class Secret extends Component {
 
 
     displaySecretData() {
-        debugger;
+        // debugger;
         const {secretData} = this.state;
         if (secretData && secretData.length > 0) {
             return secretData.map((data, index) => {

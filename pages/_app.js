@@ -25,7 +25,7 @@ class MyApp extends App {
     render() {
         const {Component, pageProps, auth} = this.props;
 
-        console.log(auth);
+        // console.log(auth);
         return <Component {...pageProps} auth={auth}/>
     }
 }

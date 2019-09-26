@@ -49,11 +49,11 @@ export default class Header extends Component {
 
         const {isOpen} = this.state;
 
-        const {isAuthenticated, user} = this.props;
+        const {isAuthenticated, user, className} = this.props;
 
         return (
             <div>
-                <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+                <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
                     <NavbarBrand href="/" className="port-navbar-brand">Roman Batiuk</NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={isOpen} navbar>
@@ -65,7 +65,7 @@ export default class Header extends Component {
                                 <BsNavLink route="/about" title="About"/>
                             </NavItem>
                             <NavItem className="port-navbar-item">
-                                <BsNavLink route="/portfolios" title="Portfolios"/>
+                                <BsNavLink route="/portfolio" title="Portfolio"/>
                             </NavItem>
                             <NavItem className="port-navbar-item">
                                 <BsNavLink route="/blog" title="Blog"/>

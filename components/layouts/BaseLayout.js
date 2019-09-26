@@ -4,12 +4,12 @@ import BasePage from "../BasePage";
 
 const BaseLayout = (props) => {
 
-    // const className = props.className || '';
+    const headerType = props.headerType || 'default';
 
     return (
         <div className="layout-container">
-            <Header isAuthenticated={props.isAuthenticated} user={props.user}/>
-            <main className={`cover ${props.className}`}>
+            <Header className={`port-nav-${headerType}`} isAuthenticated={props.isAuthenticated} user={props.user}/>
+            <main className="cover">
                 <div className="wrapper">
                     {props.children}
                 </div>
@@ -18,9 +18,9 @@ const BaseLayout = (props) => {
     );
 };
 
-BasePage.defaultProps = {
-    className: ''
-};
+// BasePage.defaultProps = {
+//     className: ''
+// };
 
 export default BaseLayout;
 

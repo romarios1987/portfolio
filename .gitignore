@@ -2,3 +2,4 @@
 /node_modules
 /information.txt
 /.next
+/server/config/dev.js

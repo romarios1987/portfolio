@@ -15,7 +15,11 @@ class Index extends Component {
         const {user, isAuthenticated} = this.props.auth;
 
         return (
-            <BaseLayout className="cover" {...this.props.auth} headerType="index">
+            <BaseLayout
+                className="cover" {...this.props.auth}
+                headerType="index"
+                title="Roman Batiuk - Portfolio"
+            >
                 <div className="main-section">
                     <div className="background-image">
                         <img src="/static/images/background-index.png" alt={''}/>

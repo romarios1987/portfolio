@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Link from "next/link";
+import ActiveLink from "../ActiveLink";
 import {
     Collapse,
     Navbar,
@@ -16,7 +17,9 @@ import auth0Client from "../../services/auth0";
 const BsNavLink = (props) => {
     const {route, title} = props;
     return (
-        <Link href={route}><a className="nav-link port-navbar-link">{title}</a></Link>
+        <ActiveLink activeClassName="active" route={route}>
+            <a className="nav-link port-navbar-link">{title}</a>
+        </ActiveLink>
     )
 };
 
@@ -53,7 +56,8 @@ export default class Header extends Component {
 
         return (
             <div>
-                <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark expand="md">
+                <Navbar className={`port-navbar port-nav-base absolute ${className}`} color="transparent" dark
+                        expand="md">
                     <NavbarBrand href="/" className="port-navbar-brand">Roman Batiuk</NavbarBrand>
                     <NavbarToggler onClick={this.toggle}/>
                     <Collapse isOpen={isOpen} navbar>
@@ -89,7 +93,7 @@ export default class Header extends Component {
 
                             {isAuthenticated &&
                             <NavItem className="port-navbar-item">
-                               <span className="nav-link port-navbar-link">{user.name}</span>
+                                <span className="nav-link port-navbar-link">{user.name}</span>
                             </NavItem>
                             }
 

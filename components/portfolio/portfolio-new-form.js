@@ -46,7 +46,7 @@ const PortfolioNewForm = ({initialValues, onSubmit, error}) => (
 
                     {error && <Alert color="danger">{error}</Alert>}
 
-                    <Button type="submit" color="success" disabled={isSubmitting}>Create</Button>
+                    <Button type="submit" color="success" disabled={isSubmitting}>Save</Button>
                 </Form>
             )}
         </Formik>

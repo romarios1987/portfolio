@@ -2,6 +2,7 @@ const express = require('express');
 const next = require('next');
 const mongoose = require('mongoose');
 const routes = require('../routes');
+const path = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
@@ -15,6 +16,15 @@ const authService = require('./services/auth');
 
 // Routes
 const portfolioRoutes = require('./routes/portfolio');
+
+
+// robotsOptions
+const robotsOptions = {
+    root: path.join(__dirname, '../static'),
+    headers: {
+        'Content-Type': 'text/plain;charset=UTF-8'
+    }
+};
 
 
 // Connect to MONGO_DB
@@ -49,13 +59,17 @@ app.prepare()
 
         server.use('/api/v1/portfolio', portfolioRoutes);
 
+        server.get('/robots.txt', (req, res) => {
+            return res.status(200).sendFile('robots.txt', robotsOptions);
+        });
 
-        server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
-            return res.json(secretData);
-        });
-        server.get('/api/v1/site-owner', authService.checkJWT, authService.checkRole('admin'), (req, res) => {
-            return res.json(secretData);
-        });
+
+        // server.get('/api/v1/secret', authService.checkJWT, (req, res) => {
+        //     return res.json(secretData);
+        // });
+        // server.get('/api/v1/site-owner', authService.checkJWT, authService.checkRole('admin'), (req, res) => {
+        //     return res.json(secretData);
+        // });
 
 
         server.get('*', (req, res) => {
@@ -73,9 +87,11 @@ app.prepare()
         });
 
 
-        server.listen(3000, (err) => {
+        const PORT = process.env.PORT || 3000;
+
+        server.listen(PORT, (err) => {
             if (err) throw  err;
-            console.log('> Read on http://localhost:3000');
+            console.log('> Read on port' + PORT);
         })
     }).catch((ex) => {
     console.error(ex.stack);

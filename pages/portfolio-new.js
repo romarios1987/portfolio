@@ -21,6 +21,11 @@ class PortfolioNew extends Component {
         error: undefined
     };
 
+    static async getInitialProps() {
+        let portfolio = {};
+        return {portfolio};
+    }
+
     savePortfolio = async (portfolioData, {setSubmitting}) => {
         setSubmitting(true);
         try {

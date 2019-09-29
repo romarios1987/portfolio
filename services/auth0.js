@@ -3,24 +3,24 @@ import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 
-import {getCookieFromReq} from '../helpers/utils'
+import {getCookieFromReq} from '../helpers/utils';
 
+const CLIENT_ID = process.env.CLIENT_ID;
 
 class Auth0 {
 
     constructor() {
         this.auth0 = new auth0.WebAuth({
             domain: 'dev-roma.eu.auth0.com',
-            clientID: 'NF446kLamlii1MZ37Gt3664aY0p5nOaz',
+            clientID: CLIENT_ID,
             responseType: 'token id_token',
-            redirectUri: 'http://localhost:3000/callback',
+            redirectUri: `${process.env.BASE_URL}/callback`,
             scope: 'open_id profile'
         });
     }
 
 
     handleAuthentication = () => {
-
         return new Promise((resolve, reject) => {
             this.auth0.parseHash((err, authResult) => {
                 if (authResult && authResult.accessToken && authResult.idToken) {
@@ -35,38 +35,26 @@ class Auth0 {
     };
 
     setSession(authResult) {
-
-        const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-
-        Cookies.set('user', authResult.idTokenPayload);
+        // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        // Cookies.set('user', authResult.idTokenPayload);
         Cookies.set('jwt', authResult.idToken);
-        Cookies.set('expiresAt', expiresAt);
-
+        // Cookies.set('expiresAt', expiresAt);
     }
 
 
     logout = () => {
-        Cookies.remove('user');
+        // Cookies.remove('user');
         Cookies.remove('jwt');
-        Cookies.remove('expiresAt');
-
+        // Cookies.remove('expiresAt');
         this.auth0.logout({
             returnTo: '',
-            clientID: 'NF446kLamlii1MZ37Gt3664aY0p5nOaz'
+            clientID: CLIENT_ID
         })
     };
 
     login = () => {
         this.auth0.authorize();
     };
-
-
-    // isAuthenticated = () => {
-    //     const expiresAt = Cookies.getJSON('expiresAt');
-    //     // console.log(new Date().getTime() < expiresAt);
-    //     return new Date().getTime() < expiresAt;
-    // };
-
 
     getJWKS = async () => {
         const res = await axios.get('https://dev-roma.eu.auth0.com/.well-known/jwks.json');
@@ -116,15 +104,7 @@ class Auth0 {
 
     serverAuth = async (req) => {
         if (req.headers.cookie) {
-
-
-            // const tokenCookie = req.headers.cookie.split(';').find((c) => c.trim().startsWith('jwt='));
-            // if (!tokenCookie) {
-            //     return undefined;
-            // }
             const token = getCookieFromReq(req, 'jwt');
-
-
             return await this.verifyToken(token);
         }
         return undefined;

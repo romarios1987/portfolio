@@ -85,10 +85,13 @@ class Portfolio extends Component {
         const {portfolio} = this.props;
         const {isAuthenticated, isSiteOwner} = this.props.auth;
         return (
-            <BaseLayout {...this.props.auth}>
+            <BaseLayout
+                {...this.props.auth}
+                title="Roman Batiuk - All My Projects"
+            >
                 <BasePage className="portfolio-page" title="Portfolio">
                     {isAuthenticated && isSiteOwner &&
-                    <Button onClick={() => Router.pushRoute('/portfolio-new')} color="success">Add project</Button>}
+                    <Button onClick={() => Router.pushRoute('/portfolio/new')} color="success">Add project</Button>}
                     <Row>
                         {this.renderAllPortfolio(portfolio)}
                     </Row>

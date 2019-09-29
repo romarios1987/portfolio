@@ -27,11 +27,11 @@
       text-transform: uppercase;
 
       &.active {
-      color: #dba919;
+      color: $active-color;
       }
 
       &:hover, &:focus {
-        color: #dba919;
+        color: $active-color;
       }
     }
   }
@@ -40,6 +40,6 @@
 
 .port-navbar.port-nav-base.port-nav-default {
   padding: 40px;
-  background-color: $secondary !important;
+  background-color: $dark-background-color !important;
 }
 

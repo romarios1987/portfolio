@@ -17,18 +17,6 @@ const authService = require('./services/auth');
 const portfolioRoutes = require('./routes/portfolio');
 
 
-const secretData = [
-    {
-        title: 'SecretData 1',
-        description: 'Plans how to build ...'
-    },
-    {
-        title: 'SecretData 2',
-        description: 'My secret password.'
-    }
-];
-
-
 // Connect to MONGO_DB
 // mongoose.connect(config.MONGO_URI, {
 //     useNewUrlParser: true,

@@ -1,21 +1,18 @@
 // Render Prop
 import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import {FormGroup, Label, Input, FormFeedback, FormText, Button} from 'reactstrap';
+import {FormGroup, Label, Input, FormFeedback, FormText, Button, Alert} from 'reactstrap';
 import PortInput from "../form/PortInput";
 
 
 const validateInputs = (values) => {
     let errors = {};
-
-    // const entries = Object.entries(values);
+    const entries = Object.entries(values);
     // debugger;
 
     // Object.entries(values).forEach(([key,value]) !!!
 
-
     Object.keys(values).forEach((key) => {
-
         if (!values[key]) {
             errors[key] = `Field ${key.toUpperCase()} is required`
         }
@@ -24,18 +21,12 @@ const validateInputs = (values) => {
 };
 
 
-const INITIAL_VALUES = {
-    title: '',
-    description: ''
-};
-
-
-const PortfolioNewForm = (props) => (
+const PortfolioNewForm = ({initialValues, onSubmit, error}) => (
     <div>
         <Formik
-            initialValues={INITIAL_VALUES}
+            initialValues={initialValues}
             validate={validateInputs}
-            onSubmit={props.onSubmit}
+            onSubmit={onSubmit}
         >
             {({isSubmitting}) => (
                 <Form>
@@ -52,6 +43,8 @@ const PortfolioNewForm = (props) => (
                         placeholder="Enter description project"
                         component={PortInput}
                     />
+
+                    {error && <Alert color="danger">{error}</Alert>}
 
                     <Button type="submit" color="success" disabled={isSubmitting}>Create</Button>
                 </Form>

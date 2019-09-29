@@ -8,13 +8,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss'
 
 
+const namespace = 'http://localhost:3000';
+
 class MyApp extends App {
 
     static async getInitialProps(appContext) {
 
         const user = process.browser ? await auth0Client.clientAuth() : await auth0Client.serverAuth(appContext.ctx.req);
 
-        const auth = {user, isAuthenticated: !!user};
+        const isSiteOwner = user && user[namespace + '/roles'] === 'siteOwner';
+        // console.log(isSiteOwner);
+
+        const auth = {user, isAuthenticated: !!user, isSiteOwner};
 
 
         const appProps = await App.getInitialProps(appContext);

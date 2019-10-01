@@ -1,36 +1,35 @@
 import React, {Component} from 'react';
 import BaseLayout from "../components/layouts/BaseLayout";
 import BasePage from "../components/BasePage";
-import PortfolioNewForm from "../components/portfolio/portfolio-new-form";
+import ProjectForm from "../components/portfolio/ProjectForm";
 
 import withAuth from '../components/hoc/withAuth';
-import {updatePortfolio, getPortfolioById} from '../actions'
+import {createPortfolio} from '../actions'
 
 import {Router} from '../routes';
 
 
-class PortfolioEdit extends Component {
+const INITIAL_VALUES = {
+    title: '',
+    description: ''
+};
+
+
+class ProjectNew extends Component {
 
     state = {
         error: undefined
     };
 
-
-    static async getInitialProps({query}) {
+    static async getInitialProps() {
         let portfolio = {};
-        try {
-            portfolio = await getPortfolioById(query.id);
-        } catch (err) {
-            console.error(err);
-        }
         return {portfolio};
     }
 
-
-    updatePortfolio = async (portfolioData, {setSubmitting}) => {
+    savePortfolio = async (portfolioData, {setSubmitting}) => {
         setSubmitting(true);
         try {
-            const newPortfolio = await updatePortfolio(portfolioData);
+            const newPortfolio = await createPortfolio(portfolioData);
             setSubmitting(false);
             this.setState({error: undefined});
             Router.pushRoute('/portfolio');
@@ -39,17 +38,18 @@ class PortfolioEdit extends Component {
             setSubmitting(false);
             this.setState({error})
         }
+
+
     };
 
     render() {
         const {error} = this.state;
-        const {portfolio} = this.props;
         return (
             <BaseLayout {...this.props.auth}>
-                <BasePage title="Update portfolio">
-                    <PortfolioNewForm
-                        initialValues={portfolio}
-                        onSubmit={this.updatePortfolio}
+                <BasePage className="portfolio-create-page" title="Create new portfolio">
+                    <ProjectForm
+                        initialValues={INITIAL_VALUES}
+                        onSubmit={this.savePortfolio}
                         error={error}
                     />
                 </BasePage>
@@ -58,4 +58,4 @@ class PortfolioEdit extends Component {
     }
 }
 
-export default withAuth('siteOwner')(PortfolioEdit);
+export default withAuth('siteOwner')(ProjectNew);

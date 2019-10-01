@@ -10,7 +10,7 @@ class Blog extends Component {
                 title="Roman Batiuk - Newest Blog to Read"
             >
                 <BasePage>
-                    <h2>Blog page</h2>
+                    <h2>Blog page under development</h2>
                 </BasePage>
             </BaseLayout>
         );

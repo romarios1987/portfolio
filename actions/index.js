@@ -8,7 +8,6 @@ const axiosInstance = axios.create({
     timeout: 3000
 });
 
-
 const setAuthHeader = (req) => {
     const token = req ? getCookieFromReq(req, 'jwt') : Cookies.getJSON('jwt');
     if (token) {
@@ -47,6 +46,10 @@ export const createPortfolio = async (portfolioData) => {
 
 export const getPortfolioById = async (id, req) => {
     return await axiosInstance.get(`/portfolio/${id}`).then(response => response.data);
+};
+
+export const getPortfolioBySlug = async (slug) => {
+    return await axiosInstance.get(`/portfolio/s/${slug}`).then(response => response.data);
 };
 
 export const updatePortfolio = async (portfolioData) => {

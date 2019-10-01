@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BaseLayout from "../components/layouts/BaseLayout";
-import Link from "next/link";
+import {Link} from '../routes';
 import {
     Card, CardImg, CardText, CardBody, CardHeader, Col, Row,
     CardTitle, CardSubtitle, Button
@@ -38,44 +38,33 @@ class Portfolio extends Component {
         }
     }
 
-    // deleteProject = (projectId) => {
-    //     deleteProject(projectId)
-    //         .then(() => {
-    //             // Delete what to do next
-    //             Router.pushRoute('/portfolio')
-    //         })
-    //         .catch((err) => console.error(err))
-    // };
-
 
     renderAllPortfolio(portfolio) {
         const {isAuthenticated, isSiteOwner} = this.props.auth;
-        return portfolio.map((work) => {
+        if(!portfolio.length){
+            return <h1>There are no projects</h1>
+        }
+        return portfolio.map((project) => {
             return (
-                <Col md="4" key={work._id}>
-                    <React.Fragment>
-                        <span>
-                          <Card className="portfolio-card">
-                            <CardHeader className="portfolio-card-header">{work.title}</CardHeader>
-                            <CardBody>
-                              <p className="portfolio-card-city">{work.description} </p>
-                                {/*<CardTitle className="portfolio-card-title">Some Company {index}</CardTitle>*/}
-                                {/*<CardText className="portfolio-card-text">Some Description {index}</CardText>*/}
-                                <div className="readMore"> </div>
-                            </CardBody>
-                              {isAuthenticated && isSiteOwner &&
-                              <>
-                                  <Button onClick={() => Router.pushRoute(`/portfolio/${work._id}/edit`)}
-                                          color="warning">Edit</Button>
-                                  <Button onClick={() => this.displayDeleteWarning(work._id)}
-                                          color="danger">Delete</Button>
-                              </>
-                              }
-                          </Card>
-                        </span>
-                    </React.Fragment>
+                <Col md="4" key={project._id}>
+                    <div className="project-preview">
+                        <Link route={`/portfolio/${project.slug}`}>
+                            <a>
+                                <h2 className="project-title">
+                                    {project.description}
+                                </h2>
+                            </a>
+                        </Link>
+                        {isAuthenticated && isSiteOwner &&
+                        <>
+                            <Button onClick={() => Router.pushRoute(`/portfolio/${project._id}/edit`)}
+                                    color="warning">Edit</Button>
+                            <Button onClick={() => this.displayDeleteWarning(project._id)}
+                                    color="danger">Delete</Button>
+                        </>
+                        }
+                    </div>
                 </Col>
-
             )
         })
     }

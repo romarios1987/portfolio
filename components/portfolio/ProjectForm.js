@@ -21,7 +21,7 @@ const validateInputs = (values) => {
 };
 
 
-const PortfolioNewForm = ({initialValues, onSubmit, error}) => (
+const ProjectForm = ({initialValues, onSubmit, error}) => (
     <div>
         <Formik
             initialValues={initialValues}
@@ -53,4 +53,4 @@ const PortfolioNewForm = ({initialValues, onSubmit, error}) => (
     </div>
 );
 
-export default PortfolioNewForm;
+export default ProjectForm;

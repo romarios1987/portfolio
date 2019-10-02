@@ -1,0 +1,73 @@
+@import "shared/fonts";
+@import "shared/colors";
+
+// Pages
+@import "./index";
+@import "./portfolio";
+
+// Components
+@import "./header";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'OpenSans', 'Helvetica', sans-serif;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+
+.self-typed {
+  font-size: 31px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.absolute {
+  position: absolute;
+}
+
+
+.clickable {
+  cursor: pointer;
+}
+
+.wrap-buttons{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.base-page {
+  padding-top: 150px;
+  color: #222;
+  background-color: #ecedee;
+  min-height: 100vh;
+
+  .page-header {
+    .page-header-title {
+      font-weight: 700;
+      color: black;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+.wrap-details-project{
+  display: flex;
+  flex-direction: column;
+  .project_link{
+    color: $dark-background-color;
+    font-weight: 700;
+    transition: all .5s ease;
+    font-size: 20px;
+    &:hover{
+      color: $active-color;
+    }
+  }
+}

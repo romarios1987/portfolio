@@ -8,7 +8,7 @@ import Typed from 'react-typed';
 class Index extends Component {
 
     state = {
-        roles: ['Developer', 'Tech Lover', 'Team Player', 'Course Creator', 'React.js']
+        roles: ['Developer', 'Team Player', 'Course Creator', 'React.js', 'Node.js', 'Vue.js']
     };
 
     render() {
@@ -34,7 +34,7 @@ class Index extends Component {
                                             <div className="hero-section-content">
                                                 <h2> Full Stack Web Developer </h2>
                                                 <div className="hero-section-content-intro">
-                                                    Have a look at my portfolio and job history.
+                                                    Have a look at my portfolio.
                                                 </div>
                                             </div>
                                             <img className="image" src="/static/images/section-1.png" alt={''}/>
@@ -49,9 +49,7 @@ class Index extends Component {
                                 <div className="hero-welcome-text">
                                     <h1>
                                         {isAuthenticated && <span><b>{user.name}</b></span>}
-                                        Welcome to the portfolio website of Roman Batiuk.
-                                        Get informed, collaborate and discover projects I was working on through the
-                                        years!
+                                        Welcome to the portfolio website of <strong>Roman Batiu</strong>k.
                                     </h1>
                                 </div>
 

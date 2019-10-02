@@ -11,7 +11,11 @@ import {Router} from '../routes';
 
 const INITIAL_VALUES = {
     title: '',
-    description: ''
+    description: '',
+    image: '',
+    tools: '',
+    project_link: '',
+    github_link: ''
 };
 
 
@@ -28,6 +32,9 @@ class ProjectNew extends Component {
 
     savePortfolio = async (portfolioData, {setSubmitting}) => {
         setSubmitting(true);
+
+        const toolsToArray = portfolioData.tools.split(",");
+        console.log(toolsToArray);
         try {
             const newPortfolio = await createPortfolio(portfolioData);
             setSubmitting(false);

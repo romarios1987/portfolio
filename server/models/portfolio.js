@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const portfolioSchema = new Schema({
     userId: {
-        type:String,
+        type: String,
         required: true
     },
     title: {
@@ -16,9 +16,21 @@ const portfolioSchema = new Schema({
         unique: true,
         sparse: true
     },
-    description: {
+    project_link: {
         type: String,
+    },
+    github_link: {
+        type: String,
+    },
+    image: {
+        type: String,
+    },
+    tools: {
+        type: [String],
         required: true
+    },
+    description: {
+        type: String
     },
     date: {
         type: Date,

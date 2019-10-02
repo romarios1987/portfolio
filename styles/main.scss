@@ -14,6 +14,11 @@ html, body {
   font-family: 'OpenSans', 'Helvetica', sans-serif;
 }
 
+a:hover{
+  text-decoration: none;
+}
+
+
 .self-typed {
   font-size: 31px;
   font-weight: 700;
@@ -30,7 +35,11 @@ html, body {
   cursor: pointer;
 }
 
-
+.wrap-buttons{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
 
 .base-page {
   padding-top: 150px;
@@ -44,6 +53,21 @@ html, body {
       color: black;
       display: inline-block;
       margin-bottom: 20px;
+    }
+  }
+}
+
+
+.wrap-details-project{
+  display: flex;
+  flex-direction: column;
+  .project_link{
+    color: $dark-background-color;
+    font-weight: 700;
+    transition: all .5s ease;
+    font-size: 20px;
+    &:hover{
+      color: $active-color;
     }
   }
 }

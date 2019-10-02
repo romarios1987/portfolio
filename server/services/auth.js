@@ -10,7 +10,7 @@ exports.checkJWT = jwt({
     secret: jwksRsa.expressJwtSecret({
         cache: true,
         rateLimit: true,
-        jwksRequestsPerMinute: 15,
+        jwksRequestsPerMinute: 50,
         jwksUri: 'https://dev-roma.eu.auth0.com/.well-known/jwks.json',
     }),
     audience: 'NF446kLamlii1MZ37Gt3664aY0p5nOaz',
@@ -22,7 +22,7 @@ exports.checkJWT = jwt({
 exports.checkRole = (role) => {
     return (req, res, next) => {
         const user = req.user;
-        console.log(user);
+        // console.log(user);
 
         if (user && user[NAMESPACE + '/roles'] && (user[NAMESPACE + '/roles'] === role)) {
             next();

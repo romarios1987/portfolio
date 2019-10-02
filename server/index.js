@@ -41,7 +41,7 @@ const robotsOptions = {
 
 (async () => {
     try {
-        await mongoose.connect(config.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+        await mongoose.connect(config.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true,  useCreateIndex: true,});
         console.log('MongoDb Connected...');
     } catch (err) {
         console.log('error: ' + err);

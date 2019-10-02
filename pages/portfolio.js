@@ -3,7 +3,7 @@ import BaseLayout from "../components/layouts/BaseLayout";
 import {Link} from '../routes';
 import {
     Card, CardImg, CardText, CardBody, CardHeader, Col, Row,
-    CardTitle, CardSubtitle, Button
+    CardTitle, CardSubtitle, Button, Badge
 } from 'reactstrap';
 
 import {getAllPortfolio, deleteProject} from '../actions'
@@ -41,29 +41,46 @@ class Portfolio extends Component {
 
     renderAllPortfolio(portfolio) {
         const {isAuthenticated, isSiteOwner} = this.props.auth;
-        if(!portfolio.length){
+        if (!portfolio.length) {
             return <h1>There are no projects</h1>
         }
         return portfolio.map((project) => {
             return (
-                <Col md="4" key={project._id}>
-                    <div className="project-preview">
-                        <Link route={`/portfolio/${project.slug}`}>
-                            <a>
-                                <h2 className="project-title">
-                                    {project.description}
-                                </h2>
-                            </a>
-                        </Link>
+                <Col md="3" key={project._id}>
+
+
+                    <Card>
+                        <CardImg top width="100%" src={project.image} alt={project.title}/>
+                        <CardBody>
+                            <CardTitle>
+                                <Link route={`/portfolio/${project.slug}`}>
+                                    <a>
+                                        <h2 className="project-title">
+                                            {project.title}
+                                        </h2>
+                                    </a>
+                                </Link>
+                            </CardTitle>
+                            <CardSubtitle>
+                                {project.tools.map((tool, index) => {
+                                    return (
+                                        <Badge key={index} color="dark">{tool}</Badge>
+                                    )
+                                })}
+                            </CardSubtitle>
+                        </CardBody>
+
                         {isAuthenticated && isSiteOwner &&
-                        <>
+                        <div className="wrap-buttons">
                             <Button onClick={() => Router.pushRoute(`/portfolio/${project._id}/edit`)}
                                     color="warning">Edit</Button>
                             <Button onClick={() => this.displayDeleteWarning(project._id)}
                                     color="danger">Delete</Button>
-                        </>
+                        </div>
                         }
-                    </div>
+
+                    </Card>
+
                 </Col>
             )
         })
@@ -80,7 +97,7 @@ class Portfolio extends Component {
             >
                 <BasePage className="portfolio-page" title="Portfolio">
                     {isAuthenticated && isSiteOwner &&
-                    <Button onClick={() => Router.pushRoute('/portfolio/new')} color="success">Add project</Button>}
+                    <Button className="mb-4" onClick={() => Router.pushRoute('/portfolio/new')} color="success">Add project</Button>}
                     <Row>
                         {this.renderAllPortfolio(portfolio)}
                     </Row>

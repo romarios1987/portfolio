@@ -63,7 +63,7 @@ export default class Header extends Component {
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem className="port-navbar-item">
-                                <BsNavLink route="/" title="Home!"/>
+                                <BsNavLink route="/" title="Home"/>
                             </NavItem>
                             <NavItem className="port-navbar-item">
                                 <BsNavLink route="/about" title="About"/>

@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
     timeout: 3000
 });
 
-console.log(process.env.BASE_URL);
+// console.log(process.env.BASE_URL);
 
 const setAuthHeader = (req) => {
     const token = req ? getCookieFromReq(req, 'jwt') : Cookies.getJSON('jwt');

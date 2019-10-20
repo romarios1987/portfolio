@@ -47,7 +47,8 @@ class Auth0 {
         Cookies.remove('jwt');
         // Cookies.remove('expiresAt');
         this.auth0.logout({
-            returnTo: '',
+            // returnTo: '',
+            returnTo: process.env.BASE_URL,
             clientID: CLIENT_ID
         })
     };

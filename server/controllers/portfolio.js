@@ -17,7 +17,7 @@ exports.getPortfolio = (req, res) => {
             return res.status(422).send(err)
         }
         return res.json(allPortfolio)
-    })
+    }).sort({date: -1})
 };
 
 

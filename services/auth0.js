@@ -7,11 +7,13 @@ import {getCookieFromReq} from '../helpers/utils';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 
+
 class Auth0 {
 
     constructor() {
         this.auth0 = new auth0.WebAuth({
-            domain: 'dev-roma.eu.auth0.com',
+            // domain: 'dev-roma.eu.auth0.com',
+            domain: 'dev-aivhnkbw.eu.auth0.com',
             clientID: CLIENT_ID,
             responseType: 'token id_token',
             redirectUri: `${process.env.BASE_URL}/callback`,
@@ -58,7 +60,7 @@ class Auth0 {
     };
 
     getJWKS = async () => {
-        const res = await axios.get('https://dev-roma.eu.auth0.com/.well-known/jwks.json');
+        const res = await axios.get('https://dev-aivhnkbw.eu.auth0.com/.well-known/jwks.json');
         return res.data;
     };
 

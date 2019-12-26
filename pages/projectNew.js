@@ -34,7 +34,7 @@ class ProjectNew extends Component {
         setSubmitting(true);
 
         const toolsToArray = portfolioData.tools.split(",");
-        console.log(toolsToArray);
+        // console.log(toolsToArray);
         try {
             const newPortfolio = await createPortfolio(portfolioData);
             setSubmitting(false);

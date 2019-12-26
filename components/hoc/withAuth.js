@@ -3,6 +3,9 @@ import BaseLayout from "../layouts/BaseLayout";
 import BasePage from "../BasePage";
 
 
+// const namespace = 'http://localhost:3000/';
+const namespace = process.env.NAMESPACE;
+
 export default (role) => {
 
     return (Component) => {
@@ -17,8 +20,7 @@ export default (role) => {
             renderProtectedPage() {
                 const {isAuthenticated, user} = this.props.auth;
 
-                const userRole = user && user[`${process.env.NAMESPACE}/roles`];
-
+                const userRole = user && user[`${namespace}role`];
                 let isAuthorized = false;
 
 
@@ -30,6 +32,7 @@ export default (role) => {
                     isAuthorized = true;
                 }
 
+                // console.log(isAuthorized)
                 if (!isAuthenticated) {
                     return (
                         <BaseLayout {...this.props.auth}>

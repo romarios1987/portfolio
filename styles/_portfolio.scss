@@ -52,4 +52,28 @@
   }
 }
 
+
+.portfolio-page .card{
+  border: none;
+  box-shadow: .8px .9px 3px grey;
+  -webkit-transition:  box-shadow .6s ease-out;
+
+
+  &:hover{
+    box-shadow: 1px 8px 20px grey;
+    -webkit-transition:  box-shadow .4s ease-in;
+  }
+}
+
+
+.portfolio-page .card .project-title{
+  color: #282c34;
+  font-weight: 700;
+  font-family: monospace;
+  transition: all .5s ease;
+  &:hover{
+    color: #61dafb;
+  }
+}
+
 // --------- PORTFOLIO PAGE -------------

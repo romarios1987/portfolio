@@ -9,8 +9,8 @@ class Blog extends Component {
                 {...this.props.auth}
                 title="Roman Batiuk - Newest Blog to Read"
             >
-                <BasePage>
-                    <h2>Blog page under development</h2>
+                <BasePage className="blog-page" title="Blog Page">
+                    <h2 style={{fontStyle: 'italic'}}>Blog page under development</h2>
                 </BasePage>
             </BaseLayout>
         );

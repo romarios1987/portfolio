@@ -46,7 +46,7 @@ class Portfolio extends Component {
         }
         return portfolio.map((project) => {
             return (
-                <Col md="3" key={project._id} className="mb-4">
+                <Col lg="4" md="6" key={project._id} className="mb-4">
 
 
                     <Card>

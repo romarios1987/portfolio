@@ -1,8 +1,9 @@
 // ======== INDEX PAGE ========//
 .cover {
   //background-image: linear-gradient(45deg, #00aeef 0%, #096fb9 100%);
-  background-image: linear-gradient(45deg, #000000 0%, #096fb9 100%);
-  position: relative;
+  //background-image: linear-gradient(45deg, #000000 0%, #096fb9 100%);
+  //position: relative;
+  //border: 2px solid red;
 }
 
 .wrapper {
@@ -12,12 +13,30 @@
   position: relative;
 
 }
+.particles{
+  position: absolute;
+  background: #20232a;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 
+//.main-section {
+//  top: 150px;
+//  width: 100%;
+//  padding: 150px 0 0;
+//  border: 1px solid #fff
+//}
 
 .main-section {
-  top: 150px;
-  width: 100%;
-  padding: 150px 0 0;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
 }
 
 .hero-section {
@@ -50,13 +69,22 @@
   max-width: 100%;
 }
 
-.hero-welcome-text > h1 {
+.hero-welcome-text {
   color: white;
   text-transform: uppercase;
-  font-size: 27px;
-  margin-top: 80px;
+  font-size: 26px;
+  padding: 0 15px;
+}
+.hero-welcome-text h1{
+  text-align: center;
+  margin: 15px 0;
 }
 
+.hero-welcome-text h3{
+  text-transform: lowercase;
+  text-align: center;
+  margin-top: 15px;
+}
 .hero-welcome-bio {
   margin-top: 20px;
   color: white;
@@ -72,10 +100,12 @@
   }
 }
 
-.hero-welcome-wrapper {
-  justify-content: flex-end;
-
-}
+//.hero-welcome-wrapper {
+//  justify-content: flex-end;
+//}
+//.hero-welcome-wrapper {
+//  border: 1px solid #fff
+//}
 
 @media (max-width: 991px) {
   .hero-section {

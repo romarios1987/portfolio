@@ -9,8 +9,8 @@ class Cv extends Component {
                 {...this.props.auth}
                 title="Preview of my CV"
             >
-                <BasePage>
-                    <h2>CV page</h2>
+                <BasePage className="cv-page" title="CV Page">
+                    <h2 style={{fontStyle: 'italic'}}>CV page</h2>
                 </BasePage>
             </BaseLayout>
         );

@@ -2,18 +2,18 @@ import React, {Component} from 'react';
 import BaseLayout from "../components/layouts/BaseLayout";
 import Particles from 'react-particles-js';
 
-import {Container, Row, Col} from 'reactstrap';
+// import {Container, Row, Col} from 'reactstrap';
 
 import Typed from 'react-typed';
 
 class Index extends Component {
 
     state = {
-        roles: ['Developer', 'Team Player', 'React.js', 'Node.js', 'Vue.js']
+        roles: ['Developer', 'React.js', 'Node.js', 'Vue.js']
     };
 
     render() {
-        const {user, isAuthenticated} = this.props.auth;
+        // const {user, isAuthenticated} = this.props.auth;
 
         return (
             <BaseLayout
